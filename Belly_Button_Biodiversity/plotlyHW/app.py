@@ -19,6 +19,7 @@ app = Flask(__name__)
 #################################################
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'postgres://whyabcxfuietkj:2cf6d1441c1d4b0c3aba989fd39cab5f2b922319f9978b1f9b79213eef360c03@ec2-54-235-180-123.compute-1.amazonaws.com:5432/d84rmoil2kc3k7') 
 db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
@@ -98,8 +99,8 @@ def samples(sample):
         "sample_values": sample_data[sample].values.tolist(),
         "otu_labels": sample_data.otu_label.tolist(),
     }
+    
     return jsonify(data)
-
 
 if __name__ == "__main__":
     app.run()
